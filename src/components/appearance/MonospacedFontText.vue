@@ -1,5 +1,5 @@
 <template>
-  <div class="inline">
+  <div class="flex flex-row items-center">
     <span
       class="font"
       v-for="chr in content"
@@ -34,8 +34,8 @@ const style = ref({
   src: url("../../assets/fonts/Rajdhani-Regular.ttf") format("truetype");
 }
 .font {
+  margin-bottom: -0.2em;
   font-family: rajdhani;
-  display: inline-block;
   text-align: center;
   line-height: 100%;
   width: 0.5em;
