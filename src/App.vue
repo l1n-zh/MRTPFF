@@ -3,7 +3,7 @@
     zoom: Math.min(width/375, height/500),
     transform: '',
     transformOrigin: (0, 0),
-  }">
+  }" @touchmove="f">
     <div class="flex flex-col bg-[#323232] w-[375px] h-[1500px] items-center ">
       <transition name="fade">
         <router-view></router-view>
@@ -15,6 +15,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 
+function f(e) {
+  if (e.scale && e.scale !== 1) {
+    e.preventDefault();
+  }
+}
 const width = ref(window.innerWidth);
 const height = ref(window.innerHeight);
 function onResize() {
