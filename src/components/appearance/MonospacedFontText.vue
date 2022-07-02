@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center">
+  <div class="inline-flex flex-row items-center">
     <span
       class="font"
       v-for="chr in content"
