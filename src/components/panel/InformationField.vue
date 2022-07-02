@@ -1,10 +1,10 @@
 <template>
-  <div class="h-[60px] w-[120px] relative">
-    <div class="absolute people right-0">
-      <m-text :content="number.toString()" :size="40" color="#212121" />
-      <div class="text-[10px] leading-[10px] mr-[2px] inline-block">人</div>
+  <div class="h-[60px] w-[120px] flex flex-col items-end z-10">
+    <div class="people flex flex-row items-end mr-[2px]">
+      <m-text :content="number.toString()" :size="35" color="#272727" />
+      <div class="text-[10px] leading-[14px] text-[#272727]">人</div>
     </div>
-    <icon class="absolute right-0 bottom-0" />
+    <icon/>
   </div>
 </template>
 
@@ -18,8 +18,4 @@ defineProps({
 </script>
 
 <style scoped>
-.people {
-  font-family: Rajdhani;
-  color: #272727;
-}
 </style>
