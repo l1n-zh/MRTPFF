@@ -1,6 +1,6 @@
 <template>
-  <div class="absolute left-[40%]">
-    <div class="test flex flex-col bg-[#323232] w-[375px] h-[1500px] items-center">
+  <div class="absolute w-[100vw]">
+    <div class="flex flex-col bg-[#323232] w-[375px] h-[1500px] items-center">
       <transition name="fade">
         <router-view></router-view>
       </transition>
@@ -10,7 +10,6 @@
 
 <script setup>
 import { ref } from "vue"
-const test = ref(true);
 </script>
 
 <style>

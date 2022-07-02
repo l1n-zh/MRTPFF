@@ -21,8 +21,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Color from "/src/components/appearance/Color.vue";
-import Monospaced from "/src/components/appearance/MonospacedFontText.vue";
+import Color from "../appearance/Color.vue";
+import Monospaced from "../appearance/MonospacedFontText.vue";
 
 const data = [
   100, 200, 10, 10, 500, 600, 800, 1000, 800, 1000, 900, 800, 700, 300, 500,

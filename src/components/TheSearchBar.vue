@@ -42,7 +42,7 @@
 
 <script setup>
 import SelectMenu from "./search-bar/SelectMenu.vue";
-import stations from "/src/data/stations.json";
+import stations from "../data/stations.json";
 import { ref } from "vue";
 
 let result = ref([]);

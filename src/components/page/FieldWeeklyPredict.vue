@@ -35,8 +35,8 @@
 </style>
 
 <script setup>
-import MText from "/src/components/appearance/MonospacedFontText.vue";
-import Color from "/src/components/appearance/Color.vue";
+import MText from "../appearance/MonospacedFontText.vue";
+import Color from "../appearance/Color.vue";
 
 const today = 3;
 </script>
