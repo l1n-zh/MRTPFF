@@ -1,10 +1,14 @@
 <template>
-  <div class="absolute w-full flex justify-center bg-black" :style="{
-    zoom: Math.min(width/375, height/500),
-    transform: '',
-    transformOrigin: (0, 0),
-  }" @touchmove="f">
-    <div class="flex flex-col bg-[#323232] w-[375px] h-[1500px] items-center ">
+  <div
+    class="absolute w-full flex justify-center bg-black"
+    :style="{
+      zoom: zoomLevel,
+      transform: '',
+      transformOrigin: (0, 0),
+    }"
+    @touchmove="onTouchmove"
+  >
+    <div class="flex flex-col bg-[#323232] w-[375px] h-[1500px] items-center">
       <transition name="fade">
         <router-view></router-view>
       </transition>
@@ -13,25 +17,34 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex"
 
-function f(e) {
+const store = useStore()
+const zoomLevel = computed(() => store.state.zoomLevel)
+function onTouchmove(e) {
   if (e.scale && e.scale !== 1) {
     e.preventDefault();
   }
 }
-const width = ref(window.innerWidth);
-const height = ref(window.innerHeight);
-function onResize() {
-  width.value = window.innerWidth;
-  height.value = window.innerHeight;
+
+function getZoomLevel() {
+  store.commit("setZoomLevel", Math.min(window.innerWidth / 375, window.innerHeight / 500))
 }
-onMounted(() => window.addEventListener('resize', onResize))
-onUnmounted(() => window.removeEventListener('resize', onResize))
+
+function onResize() {
+  getZoomLevel();
+}
+
+onMounted(() => {
+  window.addEventListener("resize", onResize);
+  getZoomLevel();
+});
+onUnmounted(() => window.removeEventListener("resize", onResize))
+
 </script>
 
 <style>
-
 @font-face {
   font-family: rajdhani;
   font-weight: normal;
