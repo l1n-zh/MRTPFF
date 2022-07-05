@@ -1,63 +1,101 @@
 <template>
-  <div
-    class="reference-line w-[297px] absolute h-[2px] rounded-[1px]"
-    v-for="i in 6"
-    :style="{ bottom: (i - 1) * 30 + 21 + 'px' }"
-  ></div>
-  <div
-    class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[3px] left-[3px] shadow-md z-20 p-[2px] bar-transition"
-    :style="{ left: hovered * 11 - 8 + 'px' }"
-  >
-    <monospaced :content="`${data[hovered - 1]}`" :size="25" color="#ffffff" />
-    <monospaced content="人" :size="1" color="#ffffff" />
-  </div>
-  <div
-    class="flex justify-between w-full h-[180px] mt-auto z-10"
-    @touchmove="onTouchmove"
-    ref="chart"
-  >
-    <svg
-      :class="[
-        'flex w-[5px] h-full transition',
-        hovered == n ? 'hight-light' : '',
-      ]"
-      @mouseover="mouseOver(n)"
-      v-for="n in 24"
-    >
-      <color />
-      <clipPath :id="`clipPathD${n}`">
-        <rect
-          :height="`${(data[n - 1] / maximum) * 100}%`"
-          width="100%"
-          :y="`${(1 - data[n - 1] / maximum) * 100}%`"
-          rx="2.5px"
-          ry="2.5px"
+  <div class="relative w-[327px] h-[270px] px-[15px] flex flex-col">
+    <div class="relative w-full h-[230px] flex mt-[30px]">
+      <div
+        v-for="i in 6"
+          class="reference-line w-[297px] absolute h-[2px] rounded-[1px]" 
+          :style="{ bottom: (i - 1) * 30 + 'px' }"
+      ></div>
+      <div
+        class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[3px] left-[3px] shadow-md z-20 p-[2px] bar-transition"
+        :style="{ left: hovered * 11 - 8 + 'px' }"
+      >
+        <monospaced
+          :content="`${data[hovered - 1]}`"
+          :size="25"
+          color="#ffffff"
         />
-      </clipPath>
-      <rect
-        width="100%"
-        height="100%"
-        :clip-path="`url(#clipPathD${n})`"
-        fill="url(#color)"
-      />
-    </svg>
+        <monospaced content="人" :size="1" color="#ffffff" />
+      </div>
+      <div
+        class="flex justify-between w-full h-[180px] mt-auto z-10"
+        @touchmove="onTouchmove"
+        ref="chart"
+      >
+        <svg
+          v-for="n in 24"
+            :class="[
+              'flex w-[5px] h-full transition',
+              hovered == n ? 'hight-light' : '',
+            ]"
+            @mouseover="mouseOver(n)"
+        >
+          <color />
+          <clipPath :id="`clipPathD${n}`">
+            <rect
+              :height="`${(data[n - 1] / maximum) * 100}%`"
+              width="100%"
+              :y="`${(1 - data[n - 1] / maximum) * 100}%`"
+              rx="2.5px"
+              ry="2.5px"
+            />
+          </clipPath>
+          <rect
+            width="100%"
+            height="100%"
+            :clip-path="`url(#clipPathD${n})`"
+            fill="url(#color)"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="w-full h-[25px] flex justify-between rounded-[3px] overflow-hidden mt-[8px]"
+    >
+      <div
+        v-for="option in Object.keys(options)"
+          :style="{ backgroundColor: display == option ? '#212121' : '#2C2C2C' }"
+          class="bg-[#212121] w-[33%] h-full text-white leading-[25px] text-[10px] text-center"
+          @click="display = option"
+      >
+        {{ option }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import Color from "../appearance/Color.vue";
 import Monospaced from "../appearance/MonospacedFontText.vue";
+import { useStore } from "vuex";
 
-const data = [
+const entering = [
   100, 200, 10, 10, 500, 600, 800, 1000, 800, 1000, 900, 800, 700, 300, 500,
   600, 800, 900, 1000, 900, 700, 800, 400, 300,
 ];
+const leaving = [
+  100, 200, 10, 10, 500, 600, 800, 1000, 800, 1000, 900, 800, 700, 300, 500,
+  600, 800, 900, 1000, 900, 700, 800, 400, 300,
+];
+const sum = [];
 
+const display = ref("總和");
+const options = {
+  進站: 0,
+  出站: 0,
+  總和: 0,
+};
+
+for (let i = 0; i < 24; ++i) sum.push(entering[i] + leaving[i]);
+
+const data = sum;
 const now = 5;
 const hovered = ref(now);
-const maximum = Math.max(...data);
+const maximum = computed(() => Math.max(...data));
 const chart = ref();
+const store = useStore();
+const zoomLevel = computed(() => store.state.zoomLevel);
 
 function mouseOver(n) {
   hovered.value = n;
@@ -65,16 +103,15 @@ function mouseOver(n) {
 
 function onTouchmove(e) {
   const chartRect = chart.value.getBoundingClientRect();
-  const zoomLevel = Math.min(window.innerWidth / 375, window.innerHeight / 500);
   const barX = e.changedTouches[0].clientX;
   const n = Math.round(
-    ((barX / zoomLevel - chartRect.x) / chartRect.width) * 24
+    ((barX / zoomLevel.value - chartRect.x) / chartRect.width) * 24
   );
   hovered.value = Math.max(Math.min(n, 24), 1);
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .bar-transition {
   transition: all 110ms linear;
 }
