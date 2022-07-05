@@ -1,24 +1,27 @@
 <template>
-  <div class="bg-[#323232]">
-    <div
-      class="option h-[55px] w-full bg-[#323232] text-white text-[30px] p-[3px] hover:bg-[#4C4C4C] relative"
+  <div class="overflow-y-scroll">
+  <transition name="slide"></transition>
+    <router-link tag="div"
       v-for="station in stations"
-    >
-      {{ station }}
-    </div>
+        class="option h-[55px] w-full text-white text-[30px] p-[3px] relative block backdrop-blur-lg"
+        :to="`/${station}`"
+        :key="station.id">
+        {{ station }}
+    </router-link>
   </div>
 </template>
 
 <script setup>
-
-
 defineProps({
-    stations: Array
-})
+  stations: Array,
+});
 </script>
 
-<style scoped>
-.option {
-  filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.3));
+<style scoped lang="postcss">
+
+.option:hover {
+  @apply
+  bg-[rgba(255,255,255,0.1)];
+  box-shadow: inset 0 .1px white,inset 0 -.1px white;
 }
 </style>
