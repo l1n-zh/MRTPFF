@@ -1,13 +1,15 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from "vue-router"
+import store from './store'
 import Home from "./components/Home.vue"
 import Page from "./components/Page.vue"
 import App from './App.vue'
 import './index.css'
 
+
 const routes = [
     { path: '/', component: Home },
-    {path: '/page', component: Page}
+    {path: '/:station', component: Page}
 ]
 
 const router = createRouter({
@@ -16,5 +18,6 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+app.use(store)
 app.use(router)
 app.mount('#app')
