@@ -1,10 +1,10 @@
 <template>
   <div class="inline-flex flex-row items-center">
     <span
-      class="font"
       v-for="chr in content"
+        class="font select-none"
         :key="chr.id"
-      :style="style"
+        :style="style"
     >
       {{ chr }}
     </span>
@@ -17,17 +17,16 @@ import { computed, ref } from "vue";
 const props = defineProps({
   content: String,
   size: Number,
-  color:String,
+  color: String,
 });
 
 const style = ref({
-  fontSize: props.size + 'px',
+  fontSize: props.size + "px",
   color: props.color,
-})
+});
 </script>
 
 <style scoped>
-
 @font-face {
   font-family: rajdhani;
   font-weight: normal;
