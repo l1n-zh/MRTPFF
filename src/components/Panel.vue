@@ -1,5 +1,5 @@
 <template>
-  <router-link to="page" tag="div" class="panel flex mt-[24px]">
+  <router-link :to="`/${station}`" tag="div" class="panel flex mt-[24px]">
     <!-- Background -->
     <svg class="shape" viewBox="3.095 -409.425 212.906 174">
       <color />
@@ -15,7 +15,9 @@
 
     <!-- Content -->
     <div class="flex flex-row m-h-full w-full justify-between">
-      <div class="flex flex-col justify-between">
+      <div class="flex flex-col justify-between text-white text-[1.5rem] leading-[1.5rem] w-[4.5em] tracking-[1px]">
+        <div class="">{{station.slice(0,4)}}</div>
+        <div class="mt-[10px]">{{station.slice(4)}}</div>
         <svg class="w-[120px] h-[60px] flex flex-1"></svg>
         <m-text class="text-white flex" :content="timeStamp" :size="30" color="#C4C4C4" />
       </div>
