@@ -13,8 +13,7 @@
     <div class="w-full flex flex-grow" @click="deactivate()"></div>
   </div>
   <div class="mt-[137.5px]" />
-  <panel station="大安森林公園" :time="12" :entered="2100" :exited="2000" />
-  <panel station="大安森林公園" :time="12" :entered="2100" :exited="2000" />
+  <panel v-for="station in stations" :station="station" :time="12" :entered="2100" :exited="2000" />
 </template>
 
 <script setup>
@@ -26,6 +25,7 @@ import { useStore } from "vuex";
 const store = useStore();
 const activated = computed(() => store.state.activated);
 const scrolled = ref(0);
+const stations = computed(() => store.state.favorites)
 
 const deactivate = () => store.commit("activate", false);
 
