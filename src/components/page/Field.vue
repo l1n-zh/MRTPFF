@@ -14,6 +14,6 @@
     h-[250px]
     px-[15px]
     py-[21px];
-    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 6px 1px rgba(0, 0, 0, 0.2);
 }
 </style>

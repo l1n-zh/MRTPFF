@@ -1,14 +1,14 @@
 <template>
-  <div class="relative w-[327px] h-[270px] px-[15px] flex flex-col">
-    <div class="relative w-full h-[230px] flex mt-[30px]">
+  <div class="field relative w-[327px] h-auto p-[15px] flex flex-col rounded-[9px] mt-[30px]">
+    <div class="relative w-full h-[210px] flex">
       <div
         v-for="i in 6"
           class="reference-line w-[297px] absolute h-[2px] rounded-[1px]" 
           :style="{ bottom: (i - 1) * 30 + 'px' }"
       ></div>
       <div
-        class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[3px] left-[3px] shadow-md z-20 p-[2px] bar-transition"
-        :style="{ left: hovered * 11 - 8 + 'px' }"
+        class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[-11px] left-[3px] shadow-md z-20 p-[2px] bar-transition"
+        :style="{ left: hovered * 11 - 24 + 'px' }"
       >
         <monospaced
           :content="`${data[hovered - 1]}`"
@@ -28,6 +28,7 @@
               'flex w-[5px] h-full transition',
               hovered == n ? 'hight-light' : '',
             ]"
+            :key = "n.id+display"
             @mouseover="mouseOver(n)"
         >
           <color />
@@ -55,7 +56,7 @@
       <div
         v-for="option in Object.keys(options)"
           :style="{ backgroundColor: display == option ? '#212121' : '#2C2C2C' }"
-          class="bg-[#212121] w-[33%] h-full text-white leading-[25px] text-[10px] text-center"
+          class="bg-[#212121] w-[33%] h-full text-white leading-[25px] text-[10px] text-center select-none"
           @click="display = option"
       >
         {{ option }}
@@ -75,24 +76,24 @@ const entering = [
   600, 800, 900, 1000, 900, 700, 800, 400, 300,
 ];
 const leaving = [
-  100, 200, 10, 10, 500, 600, 800, 1000, 800, 1000, 900, 800, 700, 300, 500,
-  600, 800, 900, 1000, 900, 700, 800, 400, 300,
+  100, 200, 700, 300, 10, 800, 1000, 800,10, 900, 700, 1000, 900, 800, 500,
+  600, 800, 500, 700, 800, 400, 300, 900, 1000
 ];
 const sum = [];
 
-const display = ref("總和");
+const display = ref("總人數");
 const options = {
-  進站: 0,
-  出站: 0,
-  總和: 0,
+  "進站人數": entering,
+  "出站人數": leaving,
+  "總人數": sum,
 };
 
 for (let i = 0; i < 24; ++i) sum.push(entering[i] + leaving[i]);
 
-const data = sum;
+const data = computed(() => options[display.value]);
 const now = 5;
 const hovered = ref(now);
-const maximum = computed(() => Math.max(...data));
+const maximum = computed(() => Math.max(...data.value));
 const chart = ref();
 const store = useStore();
 const zoomLevel = computed(() => store.state.zoomLevel);
@@ -112,6 +113,9 @@ function onTouchmove(e) {
 </script>
 
 <style scoped lang="postcss">
+.field {
+  box-shadow: inset 0 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
 .bar-transition {
   transition: all 110ms linear;
 }
