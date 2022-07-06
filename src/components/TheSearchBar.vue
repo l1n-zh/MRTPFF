@@ -33,8 +33,24 @@
         tabindex="0"
         v-model="search"
         @input="refreshSearchingResult(search)"
-        @focus="activate()"
+        @focus="activate(true)"
       />
+
+      <!-- 取消圖示 -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25.555"
+        height="25.555"
+        class="absolute right-[38px] opacity-60"
+        v-if="activated && search"
+        @click="activate(false)"
+      >
+        <path
+          d="M25.91,16.875H19.125V10.09a1.125,1.125,0,0,0-2.25,0v6.785H10.09a1.125,1.125,0,0,0,0,2.25h6.785V25.91a1.125,1.125,0,0,0,2.25,0V19.125H25.91a1.125,1.125,0,0,0,0-2.25Z"
+          transform="translate(12.778 -12.678) rotate(45)"
+          fill="#fff"
+        />
+      </svg>
 
       <!-- Filter按鈕 -->
       <svg
@@ -59,9 +75,9 @@
     <div class="flex flex-wrap" v-if="activated && withFilter">
       <div
         v-for="n in 6"
-          class="w-[50%] flex flex-row justify-start mt-[12px] select-none"
-          :style="{ opacity: openedFilters.includes(filters[n - 1]) ? 1 : 0.4 }"
-          @click="toggle(filters[n - 1])"    
+        class="w-[50%] flex flex-row justify-start mt-[12px] select-none"
+        :style="{ opacity: openedFilters.includes(filters[n - 1]) ? 1 : 0.4 }"
+        @click="toggle(filters[n - 1])"
       >
         <div
           class="w-[30px] h-[30px] rounded-[8px]"
@@ -73,7 +89,11 @@
       </div>
     </div>
   </div>
-  <select-menu :stations="searchingResult" class="w-full" v-if="activated" />
+  <select-menu
+    :stations="searchingResult"
+    class="w-full"
+    v-if="activated && search"
+  />
 </template>
 
 <script setup>
@@ -100,8 +120,8 @@ watch(activated, (value, oldValue) => {
   }
 });
 
-function activate() {
-  store.commit("activate", true);
+function activate(value) {
+  store.commit("activate", value);
 }
 
 function toggle(filter) {
