@@ -2,7 +2,8 @@ import { createStore } from "vuex"
 
 const state = {
     activated: false,
-    zoomLevel: 1
+    zoomLevel: 1,
+    favorites: new Set()
 }
 
 const mutations = {
@@ -11,6 +12,12 @@ const mutations = {
     },
     setZoomLevel(state, value) {
         state.zoomLevel = value
+    },
+    addToFavorites(state, station) {
+        state.favorites.add(station)
+    },
+    removeFromFavorites(state, station) {
+        state.favorites.delete(station)
     }
 }
 
