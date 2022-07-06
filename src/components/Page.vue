@@ -44,7 +44,7 @@
     </svg>
   </div>
 
-  <field-daily-predict></field-daily-predict>
+  <field-daily-predict :data="data" v-if="loaded"></field-daily-predict>
 
   <field>
     <field-weekly-predict></field-weekly-predict>
@@ -56,14 +56,15 @@ import FieldDailyPredict from "./page/FieldDailyPredict.vue";
 import FieldWeeklyPredict from "./page/FieldWeeklyPredict.vue";
 import Field from "./page/Field.vue";
 import { useRoute } from "vue-router";
-import { onMounted, computed } from "vue";
+import { onMounted, computed, ref } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 const route = useRoute();
-
+const loaded = ref(false);
 const station = route.params.station;
 const isFavorite = computed(() => store.state.favorites.has(station));
+const data = ref();
 function addToFavorites() {
   store.commit("addToFavorites", station);
 }
@@ -73,5 +74,14 @@ function removeFromFavorites() {
 
 onMounted(() => {
   scrollTo(0, 0);
+  fetch(`https://APP.s1091026.repl.co/daily_prediction/${station}/`)
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((Jdata) => {
+      loaded.value = true;
+      data.value = Jdata
+    });
 });
 </script>

@@ -71,24 +71,25 @@ import Color from "../appearance/Color.vue";
 import Monospaced from "../appearance/MonospacedFontText.vue";
 import { useStore } from "vuex";
 
-const entering = [
-  100, 200, 10, 10, 500, 600, 800, 1000, 800, 1000, 900, 800, 700, 300, 500,
-  600, 800, 900, 1000, 900, 700, 800, 400, 300,
-];
-const leaving = [
-  100, 200, 700, 300, 10, 800, 1000, 800,10, 900, 700, 1000, 900, 800, 500,
-  600, 800, 500, 700, 800, 400, 300, 900, 1000
-];
 const sum = [];
-
 const display = ref("總人數");
+
+const props = defineProps({
+  data: Object
+})
+
+const entering = props.data.entering
+const leaving = props.data.leaving
+
 const options = {
   "進站人數": entering,
   "出站人數": leaving,
   "總人數": sum,
 };
 
-for (let i = 0; i < 24; ++i) sum.push(entering[i] + leaving[i]);
+for (let i = 0; i < 24; ++i) {
+  sum.push(parseInt(entering[i]) + parseInt(leaving[i]))
+}
 
 const data = computed(() => options[display.value]);
 const now = 5;
@@ -97,6 +98,7 @@ const maximum = computed(() => Math.max(...data.value));
 const chart = ref();
 const store = useStore();
 const zoomLevel = computed(() => store.state.zoomLevel);
+
 
 function mouseOver(n) {
   hovered.value = n;
