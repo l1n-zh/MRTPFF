@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-between w-full h-full">
       <div class="h-[20px] w-full flex flex-row justify-between items-center" v-for="n in 7">
         <div class="text-[18px] leading-[18px] mr-1" :style="{ color: n == today ? 'white' : '#B3B3B3' }">
-          {{"周" + "一二三四五六日"[n-1]}}
+          {{"週" + "一二三四五六日"[n-1]}}
         </div>
 
         <div class="divider w-[2px] h-[80%] rounded-[1px] bg-[#666666] mr-1" />
