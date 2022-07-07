@@ -8,8 +8,8 @@ import './index.css'
 
 
 const routes = [
-    { path: '/', component: Home },
-    {path: '/:station', component: Page}
+    { path: '/APP/', component: Home },
+    { path: '/APP/:station', component: Page }
 ]
 
 const router = createRouter({
