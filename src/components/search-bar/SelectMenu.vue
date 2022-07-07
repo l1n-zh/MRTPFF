@@ -4,7 +4,7 @@
     <router-link tag="div"
       v-for="station in stations"
         class="option h-[55px] w-full text-white text-[30px] p-[3px] relative block backdrop-blur-lg"
-        :to="`/${station}`"
+        :to="station"
         :key="station.id">
         {{ station }}
     </router-link>

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/${station}`" tag="div" class="panel flex mt-[24px]">
+  <router-link :to="station" tag="div" class="panel flex mt-[24px]">
     <!-- Background -->
     <svg class="shape" viewBox="3.095 -409.425 212.906 174">
       <color />
