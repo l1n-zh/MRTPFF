@@ -26,22 +26,29 @@
         :stroke="isFavorite ? '#f4d03f' : '#fff'" />
     </svg>
   </div>
+
   <field>
-    <field-daily-predict :data="daily_data" v-if="loaded"/>
-    <loading v-if="!loaded"/>
-  </field>
-  <field>
-    <field-weekly-predict :data="weekly_data" v-if="loaded2"/>
-    <loading v-if="!loaded2"/>
+    <field-daily-predict :data="daily_data" v-if="daily_data_loaded" />
+    <loading v-if="!daily_data_loaded" />
   </field>
 
+  <field>
+    <field-weekly-predict :data="weekly_data" v-if="weekly_data_loaded" />
+    <loading v-if="!weekly_data_loaded" />
+  </field>
+  
+  <svg>
+    <gradient-color :color="color" id="color" />
+  </svg>
 </template>
 
 <script setup>
 import FieldDailyPredict from "./page/FieldDailyPredict.vue";
 import FieldWeeklyPredict from "./page/FieldWeeklyPredict.vue";
-import Loading from "./page/Loading.vue"
+import Loading from "./page/FieldLoading.vue"
 import Field from "./page/Field.vue";
+import stations from "../data/stations.json"
+import GradientColor from "./appearance/GradientColor.vue";
 import { useRoute } from "vue-router";
 import { onMounted, computed, ref } from "vue";
 import { useStore } from "vuex";
@@ -49,13 +56,15 @@ import { useStore } from "vuex";
 
 const store = useStore();
 const route = useRoute();
-const loaded = ref(false);
-const loaded2 = ref(false);
-const station = route.params.station;
-const isFavorite = computed(() => store.state.favorites.has(station));
 
+const daily_data_loaded = ref(false);
+const weekly_data_loaded = ref(false);
 const daily_data = ref();
 const weekly_data = ref();
+
+const station = route.params.station;
+const color = Object.keys(stations).find(key => stations[key].includes(station))
+const isFavorite = computed(() => store.state.favorites.has(station));
 
 function addToFavorites() {
   store.commit("addToFavorites", station);
@@ -71,14 +80,14 @@ onMounted(() => {
       return response.json();
     }).then(data => {
       daily_data.value = data;
-      loaded.value = true;
+      daily_data_loaded.value = true;
     })
   fetch(`https://APP.s1091026.repl.co/weekly_prediction/${station}/`)
     .then((response) => {
       return response.json();
     }).then(data => {
       weekly_data.value = data;
-      loaded2.value = true;
+      weekly_data_loaded.value = true;
     });
 });
 </script>

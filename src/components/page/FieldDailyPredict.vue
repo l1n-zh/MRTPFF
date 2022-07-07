@@ -4,10 +4,10 @@
     <!-- 輔助線 -->
     <div v-for="i in 6" class="reference-line w-[297px] absolute h-[2px] rounded-[1px]"
       :style="{ bottom: (i - 1) * 30 + 'px' }"></div>
-  
+
     <!-- 懸浮方塊 -->
     <div
-      class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[-15px] left-[3px] shadow-md z-20 p-[2px] bar-transition"
+      class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[-15px] left-[3px] z-20 p-[2px] bar-transition"
       :style="{ left: hovered * 11 - 24 + 'px' }">
       <monospaced :content="`${data[hovered - 1]}`" :size="25" color="#ffffff" />
       <monospaced content="人" :size="1" color="#ffffff" />
@@ -19,7 +19,6 @@
         'flex w-[5px] h-full transition',
         hovered == n ? 'hight-light' : '',
       ]" :key="n.id + display" @mouseover="mouseOver(n)">
-        <color />
         <clipPath :id="`clipPathD${n}`">
           <rect :height="`${(data[n - 1] / maximum) * 100}%`" width="100%" :y="`${(1 - data[n - 1] / maximum) * 100}%`"
             rx="2.5px" ry="2.5px" />
@@ -41,7 +40,6 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import Color from "../appearance/Color.vue";
 import Monospaced from "../appearance/MonospacedFontText.vue";
 import { useStore } from "vuex";
 
