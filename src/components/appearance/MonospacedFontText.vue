@@ -27,11 +27,7 @@ const style = ref({
 </script>
 
 <style scoped>
-@font-face {
-  font-family: rajdhani;
-  font-weight: normal;
-  src: url("../../assets/fonts/Rajdhani-Regular.ttf") format("truetype");
-}
+
 .font {
   margin-bottom: -0.2em;
   font-family: rajdhani;
