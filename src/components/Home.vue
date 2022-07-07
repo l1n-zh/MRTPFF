@@ -31,6 +31,7 @@ const deactivate = () => store.commit("activate", false);
 
 onMounted(() => {
   window.addEventListener("scroll", onScroll);
+  deactivate()
 });
 onUnmounted(() => window.removeEventListener("scroll", onScroll));
 function onScroll() {
