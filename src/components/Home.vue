@@ -13,7 +13,7 @@
     <div class="w-full flex flex-grow" @click="deactivate()"></div>
   </div>
   <div class="mt-[137.5px]" />
-  <panel v-for="station in stations" :station="station" :time="12" :entered="2100" :exited="2000" />
+  <panel v-for="station in stations" :station="station" :time="new Date().getHours()" :entered="733" :exited="454" />
 </template>
 
 <script setup>

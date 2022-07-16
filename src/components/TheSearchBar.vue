@@ -92,7 +92,6 @@
   <select-menu
     :stations="searchingResult"
     class="w-full"
-    v-if="activated && search"
   />
 </template>
 
@@ -102,7 +101,7 @@ import stations from "../data/stations.json";
 import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 
-const search = ref();
+const search = ref("");
 const searchingResult = ref([]);
 const openedFilters = ref([]);
 const withFilter = ref(false);
@@ -132,13 +131,16 @@ function toggle(filter) {
 }
 
 function refreshSearchingResult() {
-  if (search.value) {
+  if (search.value || openedFilters.value.length) {
     let tmp = [];
     openedFilters.value.forEach((filter) => tmp.push(stations[filter]));
     if (!tmp.length) tmp = Object.values(stations);
-    searchingResult.value = [...new Set(tmp.flat())].filter((station) =>
+    tmp = [...new Set(tmp.flat())]
+    searchingResult.value = tmp.filter((station) =>
       station.includes(search.value)
     );
+  } else {
+    searchingResult.value = []
   }
 }
 
