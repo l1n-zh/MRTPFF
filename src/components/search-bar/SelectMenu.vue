@@ -1,6 +1,5 @@
 <template>
   <div class="overflow-y-scroll">
-  <transition name="slide"></transition>
     <router-link tag="div"
       v-for="station in stations"
         class="option h-[55px] w-full text-white text-[30px] p-[3px] relative block backdrop-blur-lg"
