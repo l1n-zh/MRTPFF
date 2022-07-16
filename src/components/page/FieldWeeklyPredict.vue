@@ -5,7 +5,7 @@
         {{ "週" + "一二三四五六日"[n] }}
       </div>
 
-      <div class="w-[2px] h-[80%] rounded-[1px] bg-[#666666] mr-1" />
+      <div class="w-[1px] h-[60%] rounded-[1px] bg-[#666666] mr-1" />
 
       <m-text :content="d.offPeak" :size="25" :color="n == today ? 'white' : '#B3B3B3'" class="mr-2" />
 
