@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-[210px] flex">
+  <div class="relative w-full h-[230px] flex">
 
     <!-- 輔助線 -->
     <div v-for="i in 6" class="reference-line w-[297px] absolute h-[2px] rounded-[1px]"
@@ -7,10 +7,11 @@
 
     <!-- 懸浮方塊 -->
     <div
-      class="bg-[#272727] w-[68px] h-[35px] rounded-[8px] absolute top-[-15px] left-[3px] z-20 p-[2px] bar-transition"
-      :style="{ left: hovered * 11 - 24 + 'px' }">
-      <monospaced :content="`${data[hovered - 1]}`" :size="25" color="#ffffff" />
-      <monospaced content="人" :size="1" color="#ffffff" />
+      class="bg-[#272727] text-white w-[92px] h-[55px] rounded-[8px] absolute top-[-15px] left-[3px] z-20 p-[2px] bar-transition"
+      :style="{ left: hovered * 10 - 24 + 'px' }">
+      <div class="text-[15px] leading-[20px] text-[#666666]">{{hovered-1}}時</div>
+      <span class="text-[22px] leading-[30px]">{{ data[hovered - 1]}}</span>
+      <span class="text-[8px]">人</span>
     </div>
 
     <!-- 圖表 -->
@@ -64,7 +65,7 @@ for (let i = 0; i < 24; ++i) {
 }
 
 const data = computed(() => options[display.value]);
-const now = 5;
+const now = new Date().getHours() + 1;
 const hovered = ref(now);
 const maximum = computed(() => Math.max(...data.value));
 const chart = ref();
