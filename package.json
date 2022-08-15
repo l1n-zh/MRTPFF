@@ -7,8 +7,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@vueuse/core": "^9.1.0",
     "gh-pages": "^4.0.0",
-    "vue": "3.1.5",
+    "vue": "^3.2.7",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },
