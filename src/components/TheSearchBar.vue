@@ -78,6 +78,7 @@
         class="w-[50%] flex flex-row justify-start mt-[12px] select-none"
         :style="{ opacity: openedFilters.includes(filters[n - 1]) ? 1 : 0.4 }"
         @click="toggle(filters[n - 1])"
+        :key="n"
       >
         <div
           class="w-[30px] h-[30px] rounded-[8px]"
@@ -89,7 +90,7 @@
       </div>
     </div>
   </div>
-  <select-menu
+  <SelectMenu
     :stations="searchingResult"
     class="w-full"
   />
