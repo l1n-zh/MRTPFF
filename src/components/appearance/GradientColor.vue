@@ -1,5 +1,5 @@
 <template>
-  <linearGradient spreadMethod="pad" x1="1" x2="0" y1="1" y2="0">
+  <linearGradient spread-method="pad" x1="1" x2="0" y1="1" y2="0">
     <stop offset="0" :stop-color="gradientColors[color][0]" stop-opacity="1"></stop>
     <stop offset="1" :stop-color="gradientColors[color][1]" stop-opacity="1"></stop>
   </linearGradient>
