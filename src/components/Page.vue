@@ -27,18 +27,18 @@
     </svg>
   </div>
 
-  <field>
-    <field-daily-predict :data="daily_data" v-if="daily_data_loaded" />
-    <loading v-if="!daily_data_loaded" />
-  </field>
+  <Field>
+    <FieldDailyPredict :data="daily_data" v-if="daily_data_loaded" />
+    <Loading v-if="!daily_data_loaded" />
+  </Field>
 
-  <field>
-    <field-weekly-predict :data="weekly_data" v-if="weekly_data_loaded" />
-    <loading v-if="!weekly_data_loaded" />
-  </field>
+  <Field>
+    <FieldWeeklyPredict :data="weekly_data" v-if="weekly_data_loaded" />
+    <Loading v-if="!weekly_data_loaded" />
+  </Field>
   
   <svg>
-    <gradient-color :color="color" id="color" />
+    <GradientColor :color="color" id="color" />
   </svg>
 </template>
 
