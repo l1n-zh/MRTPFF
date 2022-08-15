@@ -1,7 +1,7 @@
 <template>
   <router-link :to="station" tag="div" class="panel flex mt-[24px]">
     <!-- Background -->
-    <svg class="shape" view-box="3.095 -409.425 212.906 174">
+    <svg class="shape" viewBox="3.095 -409.425 212.906 174">
       <defs>
         <gradient-color :color="color" :id="color" />
       </defs>
@@ -14,11 +14,11 @@
 
     <svg
       class="shape pt-[inherit] opacity-80"
-      view-box="-10.929 -389.426 226.93 154"
+      viewBox="-10.929 -389.426 226.93 154"
       :style="{ fill: `url(#${color})` }"
     >
       <defs>
-        <gradient-color :color="color" :id="color" />
+        <gradientColor :color="color" :id="color" />
       </defs>
 
       <path
@@ -48,7 +48,7 @@
             xmlns="http://www.w3.org/2000/svg"
             width="20.75"
             height="19.907"
-            view-box="0 0 20.75 19.907"
+            viewBox="0 0 20.75 19.907"
           >
             <path
               d="M26.638,23.657H22.5a.75.75,0,0,1,0-1.5h4.138a1.309,1.309,0,0,0,1.319-1.3V6.545a1.309,1.309,0,0,0-1.319-1.3H22.5a.75.75,0,1,1,0-1.5h4.138a2.81,2.81,0,0,1,2.819,2.8V20.862A2.81,2.81,0,0,1,26.638,23.657Z"
@@ -61,14 +61,14 @@
               fill="#323232"
             />
           </svg>
-          <information-field :number="entered" />
+          <InformationField :number="entered" />
         </div>
         <div class="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20.75"
             height="19.907"
-            view-box="0 0 20.75 19.907"
+            viewBox="0 0 20.75 19.907"
           >
             <path
               d="M26.638,23.657H22.5a.75.75,0,0,1,0-1.5h4.138a1.309,1.309,0,0,0,1.319-1.3V6.545a1.309,1.309,0,0,0-1.319-1.3H22.5a.75.75,0,1,1,0-1.5h4.138a2.81,2.81,0,0,1,2.819,2.8V20.862A2.81,2.81,0,0,1,26.638,23.657Z"
@@ -81,7 +81,7 @@
               fill="#323232"
             />
           </svg>
-          <information-field :number="exited" />
+          <InformationField :number="exited" />
         </div>
       </div>
     </div>
