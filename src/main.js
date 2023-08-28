@@ -8,12 +8,12 @@ import './index.css';
 
 
 const routes = [
-    { path: '/MRTPFF/', component: Home },
-    { path: '/MRTPFF/:station', component: Page }
+    { path: '/', component: Home },
+    { path: '/:station', component: Page }
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/MRTPFF/'),
     routes: routes,
 });
 
