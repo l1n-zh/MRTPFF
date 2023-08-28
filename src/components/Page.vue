@@ -1,7 +1,7 @@
 <template>
   <div
     class="w-full h-[50px] text-white text-[35px] text-center flex flex-row items-center justify-between px-[21px] mt-[15px]">
-    <router-link tag="div" to="/APP/">
+    <router-link tag="div" to="/">
       <svg tag="sbg" xmlns="http://www.w3.org/2000/svg" width="27" height="15.75">
         <g transform="translate(-4.5 -10.125)">
           <path
