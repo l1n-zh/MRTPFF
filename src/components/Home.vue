@@ -13,13 +13,13 @@
     <div class="w-full flex flex-grow h-full" @click="deactivate()"></div>
   </div>
   <div class="mt-[137.5px]" />
-  <panel v-for="station in stations" :station="station" :time="new Date().getHours()" :entered="733" :exited="454" />
+  <panel v-for="station in stations" :station="station" :time="new Date().getHours()" />
 </template>
 
 <script setup>
 import panel from "./panel.vue";
 import SearchBar from "./TheSearchBar.vue";
-import { ref, onMounted, onUnmounted, computed } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useWindowScroll } from '@vueuse/core'
 

@@ -28,10 +28,7 @@ const props = defineProps({
   data: Object
 })
 
-console.log(props.data)
+const today = new Date().getDay();
 const minOffPeak = Math.min(...props.data.map(d => d.offPeak))
 const maxPeak = Math.max(...props.data.map(d => d.peak))
-
-const today = new Date().getDay();
-console.log(today)
 </script>

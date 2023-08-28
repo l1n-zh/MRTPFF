@@ -4,7 +4,7 @@
       <MText :content="number.toString()" :size="35" color="#272727" />
       <span class="text-[10px] leading-[14px] text-[#272727]">人</span>
     </div>
-    <Icon/>
+    <Icon :count="Math.ceil(number/1000)"/>
   </div>
 </template>
 

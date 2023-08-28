@@ -2,7 +2,8 @@
 	<div class="h-[30px]">
 		<svg
 			v-for="n in 7"
-				class="opacity-40 w-[10px] h-full fill-current text-gray-800 inline-block mr-[2px]"
+				class="w-[10px] transition-opacity h-full fill-current text-gray-800 inline-block mr-[2px]"
+					:style="{ opacity: n <= props.count ? 1 : 0.4 }"
 				viewBox="-1096 -2237 10.688 28.501"
 		>
 			<path
@@ -13,5 +14,7 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+const props = defineProps({
+	count: Number
+})
 </script>

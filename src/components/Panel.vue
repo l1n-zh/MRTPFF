@@ -61,7 +61,7 @@
               fill="#323232"
             />
           </svg>
-          <InformationField :number="entered" />
+          <InformationField :number="number_of_people.entering" />
         </div>
         <div class="flex items-center">
           <svg
@@ -81,7 +81,7 @@
               fill="#323232"
             />
           </svg>
-          <InformationField :number="exited" />
+          <InformationField :number="number_of_people.leaving" />
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, reactive, ref, onMounted } from "vue";
 import GradientColor from "./appearance/GradientColor.vue";
 import InformationField from "./panel/InformationField.vue";
 import MText from "./appearance/MonospacedFontText.vue";
@@ -98,8 +98,8 @@ import stations from "../data/stations.json";
 const props = defineProps({
   station: String,
   time: Number,
-  entered: Number,
-  exited: Number,
+  entering: Number,
+  leaving: Number,
 });
 
 const color = Object.keys(stations).find((key) =>
@@ -109,6 +109,23 @@ const color = Object.keys(stations).find((key) =>
 const timeStamp = computed(() => {
   return props.time + ":00";
 });
+
+const data_loaded = ref(false)
+const number_of_people = reactive({
+  entering:0,
+  leaving: 0
+})
+
+onMounted(() => {
+  fetch(`https://APP.s1091026.repl.co/daily_prediction/${props.station}/`)
+    .then((response) => {
+      return response.json();
+    }).then(data => {
+      number_of_people.entering = data.entering[props.time];
+      number_of_people.leaving = data.leaving[props.time];
+      data_loaded.value = true;
+    });
+})
 </script>
 
 <style scoped lang="postcss">
