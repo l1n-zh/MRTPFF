@@ -36,7 +36,7 @@
     <FieldWeeklyPredict :data="weekly_data" v-if="weekly_data_loaded" />
     <Loading v-if="!weekly_data_loaded" />
   </Field>
-  
+
   <svg>
     <GradientColor :color="color" id="color" />
   </svg>
@@ -75,14 +75,14 @@ function removeFromFavorites() {
 
 onMounted(() => {
   scrollTo(0, 0);
-  fetch(`https://APP.s1091026.repl.co/daily_prediction/${station}/`)
+  fetch(`https://lzch1.pythonanywhere.com/daily_prediction/${station}/`)
     .then((response) => {
       return response.json();
     }).then(data => {
       daily_data.value = data;
       daily_data_loaded.value = true;
     })
-  fetch(`https://APP.s1091026.repl.co/weekly_prediction/${station}/`)
+  fetch(`https://lzch1.pythonanywhere.com/weekly_prediction/${station}/`)
     .then((response) => {
       return response.json();
     }).then(data => {
