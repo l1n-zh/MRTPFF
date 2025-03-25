@@ -1422,9 +1422,9 @@ vitawind@^1.2.9:
     autoprefixer "^10.0.2"
     tailwindcss "2.2.19"
 
-vite@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-6.2.1.tgz#ae865d4bb93a11844be1bc647c8b2dd1856ea180"
+vite@^6.2.3:
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-6.2.3.tgz#249e92d32886981ab46bc1f049ac72abc6fa81e2"
   dependencies:
     esbuild "^0.25.0"
     postcss "^8.5.3"
