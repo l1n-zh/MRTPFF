@@ -17,6 +17,6 @@
     "@vitejs/plugin-vue": "^1.10.2",
     "@vue/compiler-sfc": "3.1.5",
     "vitawind": "^1.2.9",
-    "vite": "^6.2.6"
+    "vite": "^6.3.6"
   }
 }
