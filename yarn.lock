@@ -161,6 +161,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@rolldown/pluginutils@1.0.0-rc.13":
+  version "1.0.0-rc.13"
+  resolved "https://registry.yarnpkg.com/@rolldown/pluginutils/-/pluginutils-1.0.0-rc.13.tgz#093a01af0cde13552f058544fcadf12e9b522c3b"
+
 "@rollup/rollup-android-arm-eabi@4.59.0":
   version "4.59.0"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.59.0.tgz#a6742c74c7d9d6d604ef8a48f99326b4ecda3d82"
@@ -273,9 +277,11 @@
   version "0.0.15"
   resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.15.tgz"
 
-"@vitejs/plugin-vue@^1.10.2":
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.10.2.tgz#d718479e2789d8a94b63e00f23f1898ba239253a"
+"@vitejs/plugin-vue@^6.0.6":
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-6.0.6.tgz#4d8a3a7941382cf2760ac5593364bea6856ae7b2"
+  dependencies:
+    "@rolldown/pluginutils" "1.0.0-rc.13"
 
 "@vue/compiler-core@3.1.5":
   version "3.1.5"
@@ -1173,9 +1179,9 @@ vitawind@^2.3.0:
     postcss "^8.4.31"
     tailwindcss "^3.3.5"
 
-vite@^6.4.1:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-6.4.1.tgz#afbe14518cdd6887e240a4b0221ab6d0ce733f96"
+vite@^6.4.2:
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-6.4.2.tgz#a4e548ca3a90ca9f3724582cab35e1ba15efc6f2"
   dependencies:
     esbuild "^0.25.0"
     fdir "^6.4.4"
